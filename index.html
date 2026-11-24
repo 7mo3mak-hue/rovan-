@@ -28,42 +28,72 @@ footer{text-align:center;padding:24px 0;color:#a77b8a;font-size:13px}
 .edit{position:fixed;left:14px;bottom:14px;z-index:5;border:0;border-radius:30px;background:#b94369;color:white;padding:12px 17px;font:inherit;box-shadow:0 6px 20px #a83d6340;cursor:pointer}
 dialog{border:0;border-radius:20px;padding:22px;max-width:440px;width:calc(100% - 28px);color:var(--ink);box-shadow:0 20px 80px #63304755}dialog::backdrop{background:#48233488}label{display:block;margin:10px 0 5px;font-size:13px}input,textarea{width:100%;border:1px solid #e9b5c6;border-radius:10px;padding:10px;font:inherit;background:#fffafd}textarea{min-height:100px} .actions{display:flex;gap:8px;margin-top:14px}.actions button{flex:1;padding:10px;border:0;border-radius:10px;background:#b94369;color:#fff;font:inherit;cursor:pointer}.actions .cancel{background:#f5e1e8;color:#88445e}
 @media(max-width:480px){main{padding:12px 12px 60px}.gallery{grid-template-columns:1fr 1fr}.letter{font-size:19px}.illustration{font-size:82px}section{padding:18px}}
-</style>
+
+.travel-map{height:270px;background:radial-gradient(ellipse at 18% 75%,#f8dce8 0,transparent 33%),radial-gradient(ellipse at 83% 30%,#e9defa 0,transparent 34%),linear-gradient(135deg,#fff8fb,#f8f3ff);border:1px solid #f3d4e0}
+.map-stars{position:absolute;inset:14px 18px auto;color:#d8a1b5;letter-spacing:8px;font-size:17px;opacity:.8}
+.flight-path{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.path-glow{fill:none;stroke:#e8a1ba;stroke-width:10;stroke-linecap:round;opacity:.20}
+.path-dash{fill:none;stroke:url(#pathGrad);stroke-width:3;stroke-linecap:round;stroke-dasharray:8 10;animation:dashMove 1.2s linear infinite}
+@keyframes dashMove{to{stroke-dashoffset:-36}}
+.city{position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px;z-index:2;background:#ffffffdc;border:1px solid #f0c8d7;border-radius:17px;padding:10px 13px;box-shadow:0 7px 22px #9c56751c;animation:cityFloat 3s ease-in-out infinite}
+.city-eg{left:7%;bottom:13%}.city-kw{right:7%;top:13%;animation-delay:1.4s}
+.city .flag{font-size:27px}.city b{font-size:13px;letter-spacing:1.5px;color:#a83d63}.city small{font-size:10px;color:#9e7a89}
+.city-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:#e85d87;top:-5px;right:-4px;box-shadow:0 0 0 5px #e85d8725;animation:pulseDot 1.7s infinite}
+@keyframes pulseDot{50%{box-shadow:0 0 0 11px #e85d8700}}
+.plane{position:absolute;left:43%;top:35%;font-size:30px;color:#b85b87;filter:drop-shadow(0 4px 4px #a83d6340);animation:planeTrip 6s ease-in-out infinite}
+@keyframes planeTrip{0%,100%{left:17%;top:64%;transform:rotate(-25deg)}48%,52%{left:72%;top:25%;transform:rotate(-25deg)}}
+.distance-tag{position:absolute;left:50%;top:72%;transform:translateX(-50%);font-size:10px;letter-spacing:2px;color:#b27a94;background:#ffffffbd;border:1px solid #f0d3df;padding:6px 12px;border-radius:20px;white-space:nowrap}
+.hero,.photo,section{animation:softAppear .8s ease both}
+@keyframes softAppear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+nav a{transition:transform .25s,background .25s}nav a:hover{transform:translateY(-3px);background:#ffe5ee}
+@media(max-width:480px){.travel-map{height:245px}.city{padding:8px 9px}.city small{font-size:9px}.plane{font-size:25px}}
+\n</style>
 </head>
 <body>
 <div id="hearts"></div>
 <main>
-<header><div class="eyebrow">A LITTLE GIFT FROM MY HEART</div><h1 id="headline">إلى أجمل شخص في حياتي ❤️</h1><p>فيه كلام كتير نفسي أقولهولك...</p></header>
-<div class="hero"><div class="illustration">🐱💐</div><h2>هدية صغيرة ليكي</h2><p>كل تفصيلة هنا معمولة بحب، مخصوص عشانك ♡</p></div>
-<nav><a href="#story">حكايتنا</a><a href="#memories">ذكرياتنا</a><a href="#letter">جواب ليكي</a><a href="#surprises">مفاجآت</a></nav>
-<section id="story"><h2>حكايتنا ♡</h2><div class="map"><div class="route"></div><div class="pin one" id="place1">مكاني 📍</div><div class="pin two" id="place2">مكانك 📍</div></div><p class="mapnote">المسافات مش بتغيّر مكانك في قلبي ❤️</p></section>
-<section id="memories"><h2>لحظات بحب أفتكرها 📸</h2><div class="gallery">
+<header><div class="eyebrow">MADE WITH LOVE · JUST FOR ROVY</div><h1 id="headline">إلى rovy، أجمل شخص في حياتي ❤️</h1><p>فيه كلام كتير نفسي أقولهولك...</p></header>
+<div class="hero"><div class="illustration">🐱💐</div><h2>A Little Gift For You</h2><p>Every little detail is made just for you ♡</p></div>
+<nav><a href="#story">Our Story ♡</a><a href="#memories">Memories 📸</a><a href="#letter">A Letter 💌</a><a href="#surprises">Surprises 🎁</a></nav>
+<section id="story"><h2>Our Story ♡</h2><div class="map travel-map">
+  <div class="map-stars">✦　·　　 ✧　　　 ·　✦</div>
+  <svg class="flight-path" viewBox="0 0 700 250" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="pathGrad"><stop offset="0" stop-color="#e85d87"/><stop offset="1" stop-color="#a66be0"/></linearGradient></defs>
+    <path class="path-glow" d="M105 185 C245 15 440 15 590 80"/>
+    <path class="path-dash" d="M105 185 C245 15 440 15 590 80"/>
+  </svg>
+  <div class="city city-eg"><span class="city-dot"></span><span class="flag">🇪🇬</span><b id="place1">EGYPT</b><small>7ms · Your side</small></div>
+  <div class="city city-kw"><span class="city-dot"></span><span class="flag">🇰🇼</span><b id="place2">KUWAIT</b><small>rovy · Her side</small></div>
+  <div class="plane" aria-label="plane">✈</div>
+  <div class="distance-tag">ONE SKY · TWO HEARTS</div>
+</div><p class="mapnote">Different countries, one little story. المسافة ولا حاجة قدام اللي بينا ❤️</p></section>
+<section id="memories"><h2>Little Memories 📸</h2><div class="gallery">
 <label class="photo"> <span>＋ اختار صورة من ذكرياتنا</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,0)"></label>
 <label class="photo"><span>＋ صورة تانية حلوة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,1)"></label>
 <label class="photo"><span>＋ ذكرى تالتة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,2)"></label>
 <label class="photo"><span>＋ ذكرى رابعة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,3)"></label>
 </div></section>
-<section id="letter"><h2>كلمتين من قلبي 💌</h2><div class="letter" id="letterText">يمكن مش بعرف أعبّر دايمًا عن اللي جوايا، بس وجودك في حياتي من أجمل الحاجات اللي حصلتلي. 
+<section id="letter"><h2>A Letter For You 💌</h2><div class="letter" id="letterText">يمكن مش بعرف أعبّر دايمًا عن اللي جوايا، بس وجودك في حياتي من أجمل الحاجات اللي حصلتلي. 
 بتمنى دايمًا أشوفك مبسوطة، وأكون سبب في ضحكتك، وتفضل بينا ذكريات حلوة كتير.
 شكرًا إنك شخص مميز في حياتي. ❤️
 
 بحبك،
-[اكتب اسمك هنا]</div></section>
-<section><h2>أغنية لينا 🎵</h2><p class="music-help">اختار ملف أغنية من جهازك لتشغيله هنا. الملف مش بيرتفع للإنترنت تلقائيًا.</p><input type="file" accept="audio/*" id="musicFile"><audio id="player" controls></audio></section>
-<section id="surprises"><h2>افتحي المفاجآت 🎁</h2><div class="surprises">
+7ms</div></section>
+<section><h2>Our Song 🎵</h2><p class="music-help">A song for us — تبدأ من الثانية 30 وتتكرر تلقائيًا. اضغطي Play 🎶</p><audio id="player" controls loop preload="auto" src="our-song.mp3"></audio></section>
+<section id="surprises"><h2>Open Your Surprises 🎁</h2><div class="surprises">
 <button class="surprise" onclick="reveal(this,'أجمل حاجة في يومي هي كلامك ❤️')">افتحيني 💗</button>
 <button class="surprise" onclick="reveal(this,'ضحكتك عندي بالدنيا كلها 🌷')">رسالة صغيرة 💌</button>
 <button class="surprise" onclick="reveal(this,'حتى أبسط لحظة معاكي بتبقى ذكرى حلوة ✨')">مفاجأة تانية 🎀</button>
 <button class="surprise" onclick="reveal(this,'لسه في حكايات حلوة كتير مستنيانا 🥹')">آخر مفاجأة 💞</button>
 </div></section>
-<footer>اتعملت بكل الحب ❤️</footer>
+<footer>من 7ms إلى rovy، بكل الحب ❤️</footer>
 </main>
 <button class="edit" onclick="document.getElementById('settings').showModal()">✏️ خصّص الموقع</button>
 <dialog id="settings"><h2>خلّي الهدية باسمكم ❤️</h2>
-<label>اسم الشخص اللي هتبعتهاله</label><input id="nameTo" placeholder="مثلاً: حبيبتي">
-<label>اسمك</label><input id="nameFrom" placeholder="اسمك">
-<label>المكان الأول</label><input id="loc1" placeholder="مصر">
-<label>المكان الثاني</label><input id="loc2" placeholder="إيطاليا">
+<label>اسم الشخص اللي هتبعتهاله</label><input id="nameTo" value="rovy" placeholder="مثلاً: حبيبتي">
+<label>اسمك</label><input id="nameFrom" value="7ms" placeholder="اسمك">
+<label>المكان الأول</label><input id="loc1" value="مصر 🇪🇬" placeholder="بلدك">
+<label>المكان الثاني</label><input id="loc2" value="الكويت 🇰🇼" placeholder="بلد rovy">
 <label>الرسالة الخاصة</label><textarea id="msg"></textarea>
 <div class="actions"><button onclick="saveSettings()">حفظ التعديلات</button><button class="cancel" onclick="document.getElementById('settings').close()">إغلاق</button></div>
 </dialog>
@@ -71,8 +101,8 @@ dialog{border:0;border-radius:20px;padding:22px;max-width:440px;width:calc(100% 
 const $=id=>document.getElementById(id);
 function reveal(btn,msg){btn.textContent=msg;btn.disabled=true}
 function showPhoto(input,index){if(!input.files[0])return;const box=input.parentElement;const img=document.createElement('img');img.src=URL.createObjectURL(input.files[0]);box.innerHTML='';box.appendChild(img)}
-$('musicFile').addEventListener('change',e=>{if(e.target.files[0])$('player').src=URL.createObjectURL(e.target.files[0])});
-function saveSettings(){const to=$('nameTo').value.trim(),from=$('nameFrom').value.trim();$('headline').textContent=to?`إلى ${to}، أجمل شخص في حياتي ❤️`:'إلى أجمل شخص في حياتي ❤️';$('place1').textContent=$('loc1').value||'مكاني 📍';$('place2').textContent=$('loc2').value||'مكانك 📍';$('letterText').textContent=$('msg').value||$('letterText').textContent;if(from)$('letterText').textContent=$('letterText').textContent.replace('[اكتب اسمك هنا]',from);$('settings').close()}
+
+\nfunction saveSettings(){const to=$('nameTo').value.trim(),from=$('nameFrom').value.trim();$('headline').textContent=to?`إلى ${to}، أجمل شخص في حياتي ❤️`:'إلى rovy، أجمل شخص في حياتي ❤️';$('place1').textContent=$('loc1').value||'EGYPT 🇪🇬';$('place2').textContent=$('loc2').value||'KUWAIT 🇰🇼';$('letterText').textContent=$('msg').value||$('letterText').textContent;if(from)$('letterText').textContent=$('letterText').textContent.replace('7ms',from);$('settings').close()}
 for(let i=0;i<18;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♡','♥','💕'][i%3];h.style.left=Math.random()*100+'%';h.style.animationDelay=Math.random()*9+'s';h.style.fontSize=(13+Math.random()*19)+'px';$('hearts').appendChild(h)}
 </script>
 </body></html>
