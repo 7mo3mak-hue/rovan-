@@ -1,171 +1,78 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Long Distance Gift - Hello Kitty</title>
-    <script src="https://play.tailwindcss.com/playtail.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/framer-motion@11/dist/framer-motion.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
-        .page { transition: opacity 0.8s ease, transform 0.8s ease; }
-        .hidden { opacity: 0; transform: translateY(50px); display: none; }
-        .show { opacity: 1; transform: translateY(0); display: flex; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f5">
+<title>هدية صغيرة من قلبي ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
+:root{--pink:#e85d87;--rose:#b94369;--pale:#fff0f5;--ink:#573746}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(160deg,#fff8fa,#ffeaf1);color:var(--ink);font-family:Cairo, sans-serif;overflow-x:hidden}
+#hearts{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.heart{position:absolute;bottom:-35px;color:#e98ba8;opacity:.55;animation:float 9s linear infinite}@keyframes float{to{transform:translateY(-110vh) rotate(35deg);opacity:0}}
+main{position:relative;z-index:1;max-width:760px;margin:auto;padding:24px 16px 70px}
+header{text-align:center;padding:42px 10px 24px} .eyebrow{letter-spacing:3px;color:#b9788e;font-size:12px}
+h1{font-size:clamp(29px,7vw,48px);line-height:1.4;margin:10px 0;color:#a83d63}header p{color:#966b7b}
+.hero{background:#fff;border:1px solid #f5c8d6;border-radius:28px;padding:18px;text-align:center;box-shadow:0 14px 45px #d77b9820}
+.illustration{font-size:100px;line-height:1.5}.hero h2{margin:0;color:#b94369}.hero p{margin:8px 0 4px;color:#987181}
+nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:22px 0}nav a{color:#a83d63;text-decoration:none;background:#fff;border:1px solid #f3c5d4;padding:8px 15px;border-radius:30px;font-size:13px}
+section{margin:26px 0;background:#fffdfd;border:1px dashed #e9a6bc;border-radius:23px;padding:24px;box-shadow:0 8px 28px #c45d7a12}
+section h2{text-align:center;color:#b94369;margin:0 0 18px;font-size:22px}
+.map{height:230px;border-radius:17px;background:radial-gradient(circle at 20% 30%,#fce0e9,transparent 25%),radial-gradient(circle at 80% 70%,#fce0e9,transparent 25%),#fff8fa;position:relative;overflow:hidden;display:grid;place-items:center}
+.route{width:72%;height:2px;background:repeating-linear-gradient(90deg,#d77b98 0 8px,transparent 8px 15px);transform:rotate(-19deg);position:absolute}.pin{position:absolute;background:#fff;border:2px solid #d76d91;border-radius:50%;padding:9px;font-size:12px}.pin.one{right:12%;bottom:28%}.pin.two{left:12%;top:25%}.mapnote{text-align:center;font-size:12px;color:#a77b8a;margin:10px 0 0}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.photo{background:#fff3f7;border:1px solid #f4c5d4;border-radius:15px;min-height:145px;display:grid;place-items:center;overflow:hidden;color:#ba7890;text-align:center}.photo img{width:100%;height:180px;object-fit:cover}.photo span{padding:12px}
+.letter{font-family:Amiri,serif;font-size:22px;line-height:2.1;background:repeating-linear-gradient(#fff 0 39px,#f8dce5 40px);padding:18px 20px;border-right:4px solid var(--pink);border-radius:14px;white-space:pre-wrap;min-height:220px}
+.surprises{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.surprise{border:1px solid #f1c1d1;background:#fff5f8;border-radius:15px;padding:18px 10px;color:#a83d63;font:inherit;cursor:pointer}.surprise:active{transform:scale(.98)}
+audio{width:100%;margin-top:8px} .music-help{font-size:12px;color:#9c7c89}
+footer{text-align:center;padding:24px 0;color:#a77b8a;font-size:13px}
+.edit{position:fixed;left:14px;bottom:14px;z-index:5;border:0;border-radius:30px;background:#b94369;color:white;padding:12px 17px;font:inherit;box-shadow:0 6px 20px #a83d6340;cursor:pointer}
+dialog{border:0;border-radius:20px;padding:22px;max-width:440px;width:calc(100% - 28px);color:var(--ink);box-shadow:0 20px 80px #63304755}dialog::backdrop{background:#48233488}label{display:block;margin:10px 0 5px;font-size:13px}input,textarea{width:100%;border:1px solid #e9b5c6;border-radius:10px;padding:10px;font:inherit;background:#fffafd}textarea{min-height:100px} .actions{display:flex;gap:8px;margin-top:14px}.actions button{flex:1;padding:10px;border:0;border-radius:10px;background:#b94369;color:#fff;font:inherit;cursor:pointer}.actions .cancel{background:#f5e1e8;color:#88445e}
+@media(max-width:480px){main{padding:12px 12px 60px}.gallery{grid-template-columns:1fr 1fr}.letter{font-size:19px}.illustration{font-size:82px}section{padding:18px}}
+</style>
 </head>
-<body class="bg-[#f8e8f0] overflow-x-hidden">
+<body>
+<div id="hearts"></div>
+<main>
+<header><div class="eyebrow">A LITTLE GIFT FROM MY HEART</div><h1 id="headline">إلى أجمل شخص في حياتي ❤️</h1><p>فيه كلام كتير نفسي أقولهولك...</p></header>
+<div class="hero"><div class="illustration">🐱💐</div><h2>هدية صغيرة ليكي</h2><p>كل تفصيلة هنا معمولة بحب، مخصوص عشانك ♡</p></div>
+<nav><a href="#story">حكايتنا</a><a href="#memories">ذكرياتنا</a><a href="#letter">جواب ليكي</a><a href="#surprises">مفاجآت</a></nav>
+<section id="story"><h2>حكايتنا ♡</h2><div class="map"><div class="route"></div><div class="pin one" id="place1">مكاني 📍</div><div class="pin two" id="place2">مكانك 📍</div></div><p class="mapnote">المسافات مش بتغيّر مكانك في قلبي ❤️</p></section>
+<section id="memories"><h2>لحظات بحب أفتكرها 📸</h2><div class="gallery">
+<label class="photo"> <span>＋ اختار صورة من ذكرياتنا</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,0)"></label>
+<label class="photo"><span>＋ صورة تانية حلوة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,1)"></label>
+<label class="photo"><span>＋ ذكرى تالتة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,2)"></label>
+<label class="photo"><span>＋ ذكرى رابعة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,3)"></label>
+</div></section>
+<section id="letter"><h2>كلمتين من قلبي 💌</h2><div class="letter" id="letterText">يمكن مش بعرف أعبّر دايمًا عن اللي جوايا، بس وجودك في حياتي من أجمل الحاجات اللي حصلتلي. 
+بتمنى دايمًا أشوفك مبسوطة، وأكون سبب في ضحكتك، وتفضل بينا ذكريات حلوة كتير.
+شكرًا إنك شخص مميز في حياتي. ❤️
 
-<div class="max-w-md mx-auto bg-white min-h-screen shadow-2xl overflow-hidden relative">
-
-    <!-- Header -->
-    <div class="bg-pink-500 text-white p-4 text-center font-bold text-xl">thisforuuuu.vercel.app</div>
-
-    <!-- Page 1: Hello Kitty Bouquet -->
-    <div id="page1" class="page flex flex-col items-center justify-center h-screen bg-white p-6 show">
-        <img src="https://www.pngall.com/wp-content/uploads/2017/04/Hello-Kitty-Flower-Bouquet-PNG-Image.png" alt="Hello Kitty" class="w-64 h-64">
-        <h1 class="text-4xl font-bold text-pink-600 mt-6">POV: You're in a long-distance relationship</h1>
-        <p class="text-2xl mt-2">أنت في علاقة طويلة المسافة ❤️</p>
-        <div class="mt-8 text-7xl">🩷💐</div>
-    </div>
-
-    <!-- Page 2: Gift App -->
-    <div id="page2" class="page flex flex-col items-center justify-center h-screen bg-white p-6 hidden">
-        <div class="bg-pink-600 text-white p-8 rounded-3xl w-full text-center">
-            <h2 class="text-3xl font-bold">A Gift For You ❤️</h2>
-            <p class="text-2xl mt-2">A special little gift just for you</p>
-            <img src="https://www.pngall.com/wp-content/uploads/2017/04/Hello-Kitty-Flower-Bouquet-PNG-Image.png" alt="Hello Kitty" class="w-40 mx-auto mt-6">
-            <p class="mt-6 text-3xl font-bold text-white">thisforuuuu.vercel.app</p>
-        </div>
-    </div>
-
-    <!-- Page 3: Love Story -->
-    <div id="page3" class="page flex flex-col items-center justify-center h-screen bg-white p-6 hidden">
-        <div class="w-full max-w-md bg-white rounded-3xl shadow-xl p-6">
-            <div class="text-center mb-6">
-                <p class="text-pink-500 text-2xl font-bold">OUR LOVE STORY</p>
-            </div>
-            <div class="flex justify-center mb-6">
-                <div class="bg-gradient-to-b from-pink-100 to-white p-4 rounded-2xl">
-                    <p class="text-2xl">Cairo →</p>
-                    <p class="text-3xl font-bold text-pink-500">MILANO ✈️</p>
-                </div>
-            </div>
-            <div class="text-center">
-                <p class="text-4xl font-bold text-pink-600">"from Egypt to Milano"</p>
-                <p class="text-xl mt-4">across borders, across skies<br>my heart always finds its way to you ❤️</p>
-            </div>
-        </div>
-        <button onclick="nextPage()" class="mt-8 bg-pink-500 text-white px-10 py-3 rounded-full text-xl font-bold">CONTINUE</button>
-    </div>
-
-    <!-- Page 4: Memories -->
-    <div id="page4" class="page flex flex-col items-center justify-center h-screen bg-white p-6 hidden">
-        <div class="text-center mb-6">
-            <p class="text-2xl font-bold text-pink-600">our memories</p>
-        </div>
-        <div class="grid grid-cols-2 gap-4 w-full">
-            <div class="bg-white p-4 rounded-2xl shadow">
-                <img src="https://pikwizard.com/wp-content/uploads/2025/03/Happy-Couple-Taking-Selfie-Transparent-Background.png" alt="my fav" class="w-full rounded-xl">
-                <p class="text-center mt-2 font-bold">my fav</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow">
-                <img src="https://pikwizard.com/wp-content/uploads/2025/03/Happy-Couple-Taking-Selfie-Transparent-Background.png" alt="cute" class="w-full rounded-xl">
-                <p class="text-center mt-2 font-bold">cute</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow">
-                <img src="https://pikwizard.com/wp-content/uploads/2025/03/Happy-Couple-Taking-Selfie-Transparent-Background.png" alt="forever" class="w-full rounded-xl">
-                <p class="text-center mt-2 font-bold">forever</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow">
-                <img src="https://pikwizard.com/wp-content/uploads/2025/03/Happy-Couple-Taking-Selfie-Transparent-Background.png" alt="love" class="w-full rounded-xl">
-                <p class="text-center mt-2 font-bold">love</p>
-            </div>
-        </div>
-        <button onclick="nextPage()" class="mt-8 bg-pink-500 text-white px-10 py-3 rounded-full text-xl font-bold">SEE A LETTER</button>
-    </div>
-
-    <!-- Page 5: Letter -->
-    <div id="page5" class="page flex flex-col items-center justify-center h-screen bg-white p-6 hidden">
-        <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-6 overflow-y-auto h-[70vh]">
-            <p class="text-xl leading-relaxed text-center">
-                I love you more than words could ever explain, and I hope you know how much you truly mean to me.<br><br>
-                You are my back, my support, my safe place, my husband, my lover, my best friend, and even my brother. You are not just my boyfriend, you are my person, the one I can lean on no matter what life brings.<br><br>
-                my life with you is the best life I could ever ask for. You make everything feel more beautiful, more meaningful, and more worth it. No one in this world could ever take your place, and no matter who comes into my life, nobody will ever have the place you have in my heart.
-            </p>
-            <p class="text-right mt-8 text-pink-500 font-bold">I love you always,</p>
-        </div>
-        <button onclick="nextPage()" class="mt-4 bg-pink-500 text-white px-10 py-3 rounded-full text-xl font-bold">A SONG FOR YOU</button>
-    </div>
-
-    <!-- Page 6: Song -->
-    <div id="page6" class="page flex flex-col items-center justify-center h-screen bg-white p-6 hidden">
-        <div class="text-center">
-            <p class="text-2xl font-bold text-pink-600">this song always makes me think of you</p>
-            <div class="mt-8 bg-pink-100 p-6 rounded-3xl">
-                <img src="https://www.pngall.com/wp-content/uploads/2017/04/Hello-Kitty-Headphones-PNG-Image.png" alt="Hello Kitty headphones" class="w-32 mx-auto">
-            </div>
-            <p class="mt-6 text-3xl font-bold">our song<br><span class="text-pink-500">for you</span></p>
-            <button onclick="playSong()" class="mt-8 bg-pink-500 text-white px-12 py-4 rounded-2xl text-xl font-bold">▶ PLAY OUR SONG</button>
-            <p class="mt-6 text-sm">every lyric feels like us ❤️</p>
-        </div>
-    </div>
-
-    <!-- Page 7: Virtual Flowers -->
-    <div id="page7" class="page flex flex-col items-center justify-center h-screen bg-white p-6 hidden">
-        <div class="text-center">
-            <p class="text-3xl font-bold text-pink-600">A VIRTUAL FLOWERS FOR YOU</p>
-            <div class="mt-12 text-9xl">🌸🌺🌷💐</div>
-            <button onclick="nextPage()" class="mt-10 bg-pink-500 text-white px-12 py-4 rounded-2xl text-xl font-bold">NEXT</button>
-        </div>
-    </div>
-
-    <!-- Page 8: For You -->
-    <div id="page8" class="page flex flex-col items-center justify-center h-screen bg-white p-6 hidden">
-        <div class="text-center mb-8">
-            <p class="text-3xl font-bold text-pink-600">for you</p>
-        </div>
-        <div class="grid grid-cols-2 gap-4 w-full max-w-md">
-            <div class="bg-white p-4 rounded-2xl shadow text-center">
-                <p class="text-sm">"I love you and every little thing about you"</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow text-center">
-                <p class="text-sm">"I get lost in your eyes; nothing else compares"</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow text-center">
-                <p class="text-sm">"The heart and warmth of my home"</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow text-center">
-                <p class="text-sm">"My wife and my greatest pride"</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow text-center">
-                <p class="text-sm">"Everything sweet and beautiful reminds me of you"</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow text-center">
-                <p class="text-sm">"My whole world and everything in it"</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow text-center">
-                <p class="text-sm">"The mother of future kids"</p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow text-center">
-                <p class="text-sm">"My family, home, and my everything"</p>
-            </div>
-        </div>
-    </div>
-
-</div>
-
+بحبك،
+[اكتب اسمك هنا]</div></section>
+<section><h2>أغنية لينا 🎵</h2><p class="music-help">اختار ملف أغنية من جهازك لتشغيله هنا. الملف مش بيرتفع للإنترنت تلقائيًا.</p><input type="file" accept="audio/*" id="musicFile"><audio id="player" controls></audio></section>
+<section id="surprises"><h2>افتحي المفاجآت 🎁</h2><div class="surprises">
+<button class="surprise" onclick="reveal(this,'أجمل حاجة في يومي هي كلامك ❤️')">افتحيني 💗</button>
+<button class="surprise" onclick="reveal(this,'ضحكتك عندي بالدنيا كلها 🌷')">رسالة صغيرة 💌</button>
+<button class="surprise" onclick="reveal(this,'حتى أبسط لحظة معاكي بتبقى ذكرى حلوة ✨')">مفاجأة تانية 🎀</button>
+<button class="surprise" onclick="reveal(this,'لسه في حكايات حلوة كتير مستنيانا 🥹')">آخر مفاجأة 💞</button>
+</div></section>
+<footer>اتعملت بكل الحب ❤️</footer>
+</main>
+<button class="edit" onclick="document.getElementById('settings').showModal()">✏️ خصّص الموقع</button>
+<dialog id="settings"><h2>خلّي الهدية باسمكم ❤️</h2>
+<label>اسم الشخص اللي هتبعتهاله</label><input id="nameTo" placeholder="مثلاً: حبيبتي">
+<label>اسمك</label><input id="nameFrom" placeholder="اسمك">
+<label>المكان الأول</label><input id="loc1" placeholder="مصر">
+<label>المكان الثاني</label><input id="loc2" placeholder="إيطاليا">
+<label>الرسالة الخاصة</label><textarea id="msg"></textarea>
+<div class="actions"><button onclick="saveSettings()">حفظ التعديلات</button><button class="cancel" onclick="document.getElementById('settings').close()">إغلاق</button></div>
+</dialog>
 <script>
-    let currentPage = 1;
-    function nextPage() {
-        document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-        currentPage++;
-        if (currentPage <= 8) document.getElementById('page' + currentPage).classList.remove('hidden');
-    }
-    function playSong() {
-        alert("🎵 الغة بتشتغل دلوقتي! (لو عايز تضيف أغنية حقيقية قولي وأعدلها)");
-    }
+const $=id=>document.getElementById(id);
+function reveal(btn,msg){btn.textContent=msg;btn.disabled=true}
+function showPhoto(input,index){if(!input.files[0])return;const box=input.parentElement;const img=document.createElement('img');img.src=URL.createObjectURL(input.files[0]);box.innerHTML='';box.appendChild(img)}
+$('musicFile').addEventListener('change',e=>{if(e.target.files[0])$('player').src=URL.createObjectURL(e.target.files[0])});
+function saveSettings(){const to=$('nameTo').value.trim(),from=$('nameFrom').value.trim();$('headline').textContent=to?`إلى ${to}، أجمل شخص في حياتي ❤️`:'إلى أجمل شخص في حياتي ❤️';$('place1').textContent=$('loc1').value||'مكاني 📍';$('place2').textContent=$('loc2').value||'مكانك 📍';$('letterText').textContent=$('msg').value||$('letterText').textContent;if(from)$('letterText').textContent=$('letterText').textContent.replace('[اكتب اسمك هنا]',from);$('settings').close()}
+for(let i=0;i<18;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♡','♥','💕'][i%3];h.style.left=Math.random()*100+'%';h.style.animationDelay=Math.random()*9+'s';h.style.fontSize=(13+Math.random()*19)+'px';$('hearts').appendChild(h)}
 </script>
-</body>
-</html>
+</body></html>
