@@ -10,7 +10,7 @@
 :root{--pink:#e85d87;--rose:#b94369;--pale:#fff0f5;--ink:#573746}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(160deg,#fff8fa,#ffeaf1);color:var(--ink);font-family:Cairo, sans-serif;overflow-x:hidden}
 #hearts{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.heart{position:absolute;bottom:-35px;color:#e98ba8;opacity:.55;animation:float 9s linear infinite}@keyframes float{to{transform:translateY(-110vh) rotate(35deg);opacity:0}}
-main{position:relative;z-index:1;max-width:760px;margin:auto;padding:24px 16px 70px}
+main{position:relative;z-index:1;max-width:760px;margin:auto;padding:24px 16px 125px}
 header{text-align:center;padding:42px 10px 24px} .eyebrow{letter-spacing:3px;color:#b9788e;font-size:12px}
 h1{font-size:clamp(29px,7vw,48px);line-height:1.4;margin:10px 0;color:#a83d63}header p{color:#966b7b}
 .hero{background:#fff;border:1px solid #f5c8d6;border-radius:28px;padding:18px;text-align:center;box-shadow:0 14px 45px #d77b9820}
@@ -24,6 +24,16 @@ section h2{text-align:center;color:#b94369;margin:0 0 18px;font-size:22px}
 .letter{font-family:Amiri,serif;font-size:22px;line-height:2.1;background:repeating-linear-gradient(#fff 0 39px,#f8dce5 40px);padding:18px 20px;border-right:4px solid var(--pink);border-radius:14px;white-space:pre-wrap;min-height:220px}
 .surprises{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.surprise{border:1px solid #f1c1d1;background:#fff5f8;border-radius:15px;padding:18px 10px;color:#a83d63;font:inherit;cursor:pointer}.surprise:active{transform:scale(.98)}
 audio{width:100%;margin-top:8px} .music-help{font-size:12px;color:#9c7c89}
+/* Fixed bottom music dock */
+.music-dock{position:fixed;z-index:10;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));max-width:720px;margin:auto;padding:10px 14px;background:#fffdfdf2;border:1px solid #efbfd0;border-radius:22px;box-shadow:0 10px 35px #71364b2b;backdrop-filter:blur(14px);display:flex;align-items:center;gap:12px;direction:ltr}
+.music-disc{width:42px;height:42px;flex:0 0 42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffe2ec,#f3b5cb);color:#a83d63;font-size:20px;box-shadow:0 3px 12px #b9436930}
+.music-dock.playing .music-disc{animation:discSpin 5s linear infinite}
+.music-meta{min-width:0;flex:1;text-align:left;direction:ltr}.music-title{font-size:12px;font-weight:800;color:#a83d63;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.music-subtitle{font-size:10px;color:#a77b8a;margin-top:2px}
+.music-bars{height:22px;display:flex;align-items:center;gap:3px;margin-top:3px}.music-bars i{display:block;width:3px;height:5px;border-radius:5px;background:#e36b91;opacity:.55;transform-origin:center;animation:barDance .75s ease-in-out infinite alternate;animation-play-state:paused}.music-dock.playing .music-bars i{animation-play-state:running}.music-bars i:nth-child(2n){animation-delay:.16s}.music-bars i:nth-child(3n){animation-delay:.3s}.music-bars i:nth-child(4n){animation-delay:.42s}
+@keyframes barDance{from{height:4px;opacity:.45}to{height:20px;opacity:1}}@keyframes discSpin{to{transform:rotate(360deg)}}
+.music-dock audio{width: min(42%,250px);height:34px;margin:0;flex:0 0 auto}
+@media(max-width:520px){.music-dock{left:8px;right:8px;gap:9px;padding:9px 10px;border-radius:18px}.music-disc{width:36px;height:36px;flex-basis:36px;font-size:17px}.music-title{font-size:11px}.music-subtitle{font-size:9px}.music-dock audio{width:42%;height:32px}}
+
 footer{text-align:center;padding:24px 0;color:#a77b8a;font-size:13px}
 .edit{position:fixed;left:14px;bottom:14px;z-index:5;border:0;border-radius:30px;background:#b94369;color:white;padding:12px 17px;font:inherit;box-shadow:0 6px 20px #a83d6340;cursor:pointer}
 dialog{border:0;border-radius:20px;padding:22px;max-width:440px;width:calc(100% - 28px);color:var(--ink);box-shadow:0 20px 80px #63304755}dialog::backdrop{background:#48233488}label{display:block;margin:10px 0 5px;font-size:13px}input,textarea{width:100%;border:1px solid #e9b5c6;border-radius:10px;padding:10px;font:inherit;background:#fffafd}textarea{min-height:100px} .actions{display:flex;gap:8px;margin-top:14px}.actions button{flex:1;padding:10px;border:0;border-radius:10px;background:#b94369;color:#fff;font:inherit;cursor:pointer}.actions .cancel{background:#f5e1e8;color:#88445e}
@@ -47,9 +57,29 @@ dialog{border:0;border-radius:20px;padding:22px;max-width:440px;width:calc(100% 
 @keyframes softAppear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 nav a{transition:transform .25s,background .25s}nav a:hover{transform:translateY(-3px);background:#ffe5ee}
 @media(max-width:480px){.travel-map{height:245px}.city{padding:8px 9px}.city small{font-size:9px}.plane{font-size:25px}}
-\n</style>
+\n
+/* Entry screen and elapsed-time counter */
+#gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 50% 25%,#fff 0,#fff0f5 52%,#f8dce8 100%);transition:opacity .65s ease,visibility .65s ease}
+#gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.gate-card{width:min(430px,100%);padding:32px 24px;text-align:center;background:#ffffffeb;border:1px solid #f2bfd0;border-radius:30px;box-shadow:0 22px 70px #a83d6325;animation:gateFloat 4s ease-in-out infinite}
+.gate-heart{font-size:54px;animation:heartbeat 1.8s ease-in-out infinite}.gate-card h1{font-size:27px;margin:8px 0;color:#a83d63}.gate-card p{color:#987181;margin:8px 0 20px}
+#passcode{width:100%;text-align:center;letter-spacing:7px;font-size:22px;border:1px solid #e9b5c6;border-radius:14px;padding:13px;background:#fffafd;outline:none}
+#unlock{width:100%;margin-top:12px;padding:13px;border:0;border-radius:14px;background:linear-gradient(120deg,#e85d87,#b94369);color:white;font:700 16px Cairo,sans-serif;box-shadow:0 8px 22px #b9436935;cursor:pointer;transition:transform .2s}
+#unlock:active{transform:scale(.98)}#gateError{min-height:24px;color:#c03e68;font-size:13px;margin:9px 0 0}
+.counter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 8px}.counter-cell{padding:18px 8px;border:1px solid #f1cada;border-radius:18px;background:linear-gradient(145deg,#fff8fb,#ffeaf1);text-align:center;box-shadow:0 8px 20px #c45d7a10}.counter-cell strong{display:block;font-size:clamp(28px,7vw,42px);color:#b94369;line-height:1.25;font-variant-numeric:tabular-nums}.counter-cell span{font-size:12px;color:#9c7182}.counter-total{text-align:center;color:#9c7182;font-size:14px}.counter-total b{color:#b94369;font-size:19px}
+@keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.12)}30%{transform:scale(1)}45%{transform:scale(1.08)}}
+@keyframes gateFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.photo{position:relative;transition:transform .35s,box-shadow .35s}.photo:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 14px 25px #c45d7a18}
+section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14px 34px #c45d7a18}
+
+</style>
 </head>
 <body>
+<div id="gate" role="dialog" aria-modal="true" aria-label="Enter the date code">
+  <div class="gate-card"><div class="gate-heart">💗</div><h1>A Little Surprise</h1><p>Enter our special date to open your gift<br>اكتبي تاريخنا المميز عشان تفتحي الهدية</p>
+    <form id="gateForm"><input id="passcode" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="DDMMYYYY" aria-label="Passcode"><button id="unlock" type="submit">Open our story ♡</button></form><div id="gateError" aria-live="polite"></div>
+  </div>
+</div>
 <div id="hearts"></div>
 <main>
 <header><div class="eyebrow">MADE WITH LOVE · JUST FOR ROVY</div><h1 id="headline">إلى rovy، أجمل شخص في حياتي ❤️</h1><p>فيه كلام كتير نفسي أقولهولك...</p></header>
@@ -67,11 +97,12 @@ nav a{transition:transform .25s,background .25s}nav a:hover{transform:translateY
   <div class="plane" aria-label="plane">✈</div>
   <div class="distance-tag">ONE SKY · TWO HEARTS</div>
 </div><p class="mapnote">Different countries, one little story. المسافة ولا حاجة قدام اللي بينا ❤️</p></section>
+<section id="time-together"><h2>Our Time Together ⏳</h2><p class="mapnote">Since June 16, 2024 · من يوم 16 يونيو 2024</p><div class="counter-grid"><div class="counter-cell"><strong id="years">0</strong><span>Years · سنين</span></div><div class="counter-cell"><strong id="months">0</strong><span>Months · شهور</span></div><div class="counter-cell"><strong id="days">0</strong><span>Days · أيام</span></div></div><p class="counter-total">That's <b id="totalDays">0</b> days of our story ❤️</p></section>
 <section id="memories"><h2>Little Memories 📸</h2><div class="gallery">
-<label class="photo"> <span>＋ اختار صورة من ذكرياتنا</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,0)"></label>
-<label class="photo"><span>＋ صورة تانية حلوة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,1)"></label>
-<label class="photo"><span>＋ ذكرى تالتة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,2)"></label>
-<label class="photo"><span>＋ ذكرى رابعة</span><input hidden type="file" accept="image/*" onchange="showPhoto(this,3)"></label>
+<div class="photo"><span>Our favorite memories ♡</span></div>
+<div class="photo"><span>Little moments, big feelings ✨</span></div>
+<div class="photo"><span>Across the miles 💗</span></div>
+<div class="photo"><span>More memories to come 🌷</span></div>
 </div></section>
 <section id="letter"><h2>A Letter For You 💌</h2><div class="letter" id="letterText">يمكن مش بعرف أعبّر دايمًا عن اللي جوايا، بس وجودك في حياتي من أجمل الحاجات اللي حصلتلي. 
 بتمنى دايمًا أشوفك مبسوطة، وأكون سبب في ضحكتك، وتفضل بينا ذكريات حلوة كتير.
@@ -79,7 +110,7 @@ nav a{transition:transform .25s,background .25s}nav a:hover{transform:translateY
 
 بحبك،
 7ms</div></section>
-<section><h2>Our Song 🎵</h2><p class="music-help">A song for us — تبدأ من الثانية 30 وتتكرر تلقائيًا. اضغطي Play 🎶</p><audio id="player" controls loop preload="auto" src="our-song.mp3"></audio></section>
+
 <section id="surprises"><h2>Open Your Surprises 🎁</h2><div class="surprises">
 <button class="surprise" onclick="reveal(this,'أجمل حاجة في يومي هي كلامك ❤️')">افتحيني 💗</button>
 <button class="surprise" onclick="reveal(this,'ضحكتك عندي بالدنيا كلها 🌷')">رسالة صغيرة 💌</button>
@@ -88,21 +119,58 @@ nav a{transition:transform .25s,background .25s}nav a:hover{transform:translateY
 </div></section>
 <footer>من 7ms إلى rovy، بكل الحب ❤️</footer>
 </main>
-<button class="edit" onclick="document.getElementById('settings').showModal()">✏️ خصّص الموقع</button>
-<dialog id="settings"><h2>خلّي الهدية باسمكم ❤️</h2>
-<label>اسم الشخص اللي هتبعتهاله</label><input id="nameTo" value="rovy" placeholder="مثلاً: حبيبتي">
-<label>اسمك</label><input id="nameFrom" value="7ms" placeholder="اسمك">
-<label>المكان الأول</label><input id="loc1" value="مصر 🇪🇬" placeholder="بلدك">
-<label>المكان الثاني</label><input id="loc2" value="الكويت 🇰🇼" placeholder="بلد rovy">
-<label>الرسالة الخاصة</label><textarea id="msg"></textarea>
-<div class="actions"><button onclick="saveSettings()">حفظ التعديلات</button><button class="cancel" onclick="document.getElementById('settings').close()">إغلاق</button></div>
-</dialog>
-<script>
-const $=id=>document.getElementById(id);
-function reveal(btn,msg){btn.textContent=msg;btn.disabled=true}
-function showPhoto(input,index){if(!input.files[0])return;const box=input.parentElement;const img=document.createElement('img');img.src=URL.createObjectURL(input.files[0]);box.innerHTML='';box.appendChild(img)}
+<div class="music-dock" id="musicDock" aria-label="Music player">
+  <div class="music-disc">♫</div>
+  <div class="music-meta"><div class="music-title">Our Song · 7ms & rovy</div><div class="music-subtitle">A little melody for us ♡</div><div class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  <audio id="player" controls preload="auto" src="our-song.m4a"></audio>
+</div>
 
-\nfunction saveSettings(){const to=$('nameTo').value.trim(),from=$('nameFrom').value.trim();$('headline').textContent=to?`إلى ${to}، أجمل شخص في حياتي ❤️`:'إلى rovy، أجمل شخص في حياتي ❤️';$('place1').textContent=$('loc1').value||'EGYPT 🇪🇬';$('place2').textContent=$('loc2').value||'KUWAIT 🇰🇼';$('letterText').textContent=$('msg').value||$('letterText').textContent;if(from)$('letterText').textContent=$('letterText').textContent.replace('7ms',from);$('settings').close()}
-for(let i=0;i<18;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♡','♥','💕'][i%3];h.style.left=Math.random()*100+'%';h.style.animationDelay=Math.random()*9+'s';h.style.fontSize=(13+Math.random()*19)+'px';$('hearts').appendChild(h)}
+<script>
+const $ = id => document.getElementById(id);
+function reveal(btn,msg){btn.textContent=msg;btn.disabled=true;btn.classList.add('revealed')}
+
+// Calendar-aware elapsed time since June 16, 2024.
+const startDate = new Date(2024, 5, 16, 0, 0, 0);
+function calendarDiff(from, to){
+  let years = to.getFullYear() - from.getFullYear();
+  let anchor = new Date(from.getFullYear()+years, from.getMonth(), from.getDate(), from.getHours(), from.getMinutes(), from.getSeconds());
+  if(anchor > to){ years--; anchor = new Date(from.getFullYear()+years, from.getMonth(), from.getDate(), from.getHours(), from.getMinutes(), from.getSeconds()); }
+  let months = (to.getFullYear()-anchor.getFullYear())*12 + to.getMonth()-anchor.getMonth();
+  let monthAnchor = new Date(anchor.getFullYear(), anchor.getMonth()+months, anchor.getDate(), anchor.getHours(), anchor.getMinutes(), anchor.getSeconds());
+  if(monthAnchor > to){ months--; monthAnchor = new Date(anchor.getFullYear(), anchor.getMonth()+months, anchor.getDate(), anchor.getHours(), anchor.getMinutes(), anchor.getSeconds()); }
+  const days = Math.floor((to-monthAnchor)/86400000);
+  return {years, months, days};
+}
+function updateCounter(){
+  const now = new Date(); const d = calendarDiff(startDate, now);
+  $('years').textContent=d.years; $('months').textContent=d.months; $('days').textContent=d.days;
+  $('totalDays').textContent=Math.floor((now-startDate)/86400000).toLocaleString('en-US');
+}
+updateCounter(); setInterval(updateCounter, 1000);
+
+// Floating hearts
+for(let i=0;i<22;i++){
+  const h=document.createElement('span'); h.className='heart'; h.textContent=['♡','♥','💕','✦'][i%4];
+  h.style.left=Math.random()*100+'%'; h.style.animationDelay=Math.random()*9+'s';
+  h.style.animationDuration=(8+Math.random()*6)+'s'; h.style.fontSize=(13+Math.random()*19)+'px';
+  $('hearts').appendChild(h);
+}
+
+// Browsers require a user gesture before audio can play.
+const player=$('player');
+const musicDock=$('musicDock');
+player.addEventListener('play',()=>musicDock.classList.add('playing'));
+player.addEventListener('pause',()=>musicDock.classList.remove('playing'));
+$('gateForm').addEventListener('submit', async (event)=>{
+  event.preventDefault();
+  if($('passcode').value.trim() !== '16062024'){
+    $('gateError').textContent='Try again ♡'; $('passcode').value=''; $('passcode').focus(); return;
+  }
+  $('gateError').textContent=''; $('gate').classList.add('hidden');
+  try { player.currentTime=30; await player.play(); }
+  catch(err){ $('gateError').textContent='اضغط Play لتشغيل الأغنية 🎵'; }
+});
+player.addEventListener('loadedmetadata',()=>{ if(player.currentTime < 30) player.currentTime=30; });
+player.addEventListener('ended',()=>{ player.currentTime=30; player.play().catch(()=>{}); });
 </script>
 </body></html>
