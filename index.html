@@ -14,7 +14,8 @@ main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 20px 13
 header{text-align:center;padding:12px 10px 18px} .eyebrow{letter-spacing:3px;color:#b9788e;font-size:12px}
 h1{font-size:clamp(29px,7vw,48px);line-height:1.4;margin:10px 0;color:#a83d63}header p{color:#966b7b}
 .hero{background:#fff;border:1px solid #f5c8d6;border-radius:28px;padding:18px;text-align:center;box-shadow:0 14px 45px #d77b9820}
-.illustration{font-size:clamp(110px,18vw,170px);line-height:1.35}.hero h2{margin:0;color:#b94369}.hero p{margin:8px 0 4px;color:#987181}
+.hero-collage{display:block;width:100%;max-width:620px;height:auto;margin:0 auto 12px;border-radius:18px;box-shadow:0 8px 26px #b9436920}
+.illustration{font-size:clamp(110px,18vw,170px);line-height:1.35}.gift-art{height:175px;display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 8px}.gift-art svg{width:min(44%,220px);height:100%;overflow:visible;filter:drop-shadow(0 5px 8px #b9436920)}.hero h2{margin:0;color:#b94369}.hero p{margin:8px 0 4px;color:#987181}
 nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:22px 0}nav a{color:#a83d63;text-decoration:none;background:#fff;border:1px solid #f3c5d4;padding:8px 15px;border-radius:30px;font-size:13px}
 section{margin:26px 0;background:#fffdfd;border:1px dashed #e9a6bc;border-radius:23px;padding:24px;box-shadow:0 8px 28px #c45d7a12}
 section h2{text-align:center;color:#b94369;margin:0 0 18px;font-size:22px}
@@ -37,7 +38,7 @@ audio{width:100%;margin-top:8px}.audio-controls{display:flex;align-items:center;
 footer{text-align:center;padding:24px 0;color:#a77b8a;font-size:13px}
 .edit{position:fixed;left:14px;bottom:14px;z-index:5;border:0;border-radius:30px;background:#b94369;color:white;padding:12px 17px;font:inherit;box-shadow:0 6px 20px #a83d6340;cursor:pointer}
 dialog{border:0;border-radius:20px;padding:22px;max-width:440px;width:calc(100% - 28px);color:var(--ink);box-shadow:0 20px 80px #63304755}dialog::backdrop{background:#48233488}label{display:block;margin:10px 0 5px;font-size:13px}input,textarea{width:100%;border:1px solid #e9b5c6;border-radius:10px;padding:10px;font:inherit;background:#fffafd}textarea{min-height:100px} .actions{display:flex;gap:8px;margin-top:14px}.actions button{flex:1;padding:10px;border:0;border-radius:10px;background:#b94369;color:#fff;font:inherit;cursor:pointer}.actions .cancel{background:#f5e1e8;color:#88445e}
-@media(max-width:600px){main{padding:0 12px 130px}.gallery{grid-template-columns:1fr}.photo{min-height:390px}.photo img{height:390px}.letter{font-size:19px}.illustration{font-size:82px}section{padding:18px}}
+@media(max-width:600px){main{padding:0 12px 130px}.gallery{grid-template-columns:1fr}.photo{min-height:390px}.photo img{height:390px}.letter{font-size:19px}.illustration{font-size:82px}.gift-art{height:145px;gap:4px}section{padding:18px}}
 
 .travel-map{height:270px;background:radial-gradient(ellipse at 18% 75%,#f8dce8 0,transparent 33%),radial-gradient(ellipse at 83% 30%,#e9defa 0,transparent 34%),linear-gradient(135deg,#fff8fb,#f8f3ff);border:1px solid #f3d4e0}
 .map-stars{position:absolute;inset:14px 18px auto;color:#d8a1b5;letter-spacing:8px;font-size:17px;opacity:.8}
@@ -109,9 +110,8 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
 </div>
 <div id="hearts"></div>
 <main>
-<header><div class="eyebrow">MADE WITH LOVE · JUST FOR ROVY</div><h1 id="headline">For Rovy, someone truly special ❤️</h1><p>There are so many little things I want to tell you...</p></header>
-<div class="hero"><div class="illustration hero-art" aria-label="A cute cat holding a bouquet of flowers" role="img">
-<svg viewBox="0 0 360 190" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="fur" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe5a3"/><stop offset="1" stop-color="#ffbd59"/></linearGradient><linearGradient id="petal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9fbe"/><stop offset="1" stop-color="#e85d87"/></linearGradient></defs><ellipse cx="176" cy="165" rx="115" ry="13" fill="#f8dce7"/><path d="M75 78 Q64 17 113 36 L140 55 Q177 39 211 56 L239 34 Q278 19 270 80 Q285 125 247 147 Q213 168 169 160 Q116 166 86 137 Q64 112 75 78Z" fill="url(#fur)"/><path d="M89 64 Q82 34 111 48 L132 66 M229 65 L253 46 Q270 39 260 69" fill="#f49a56"/><ellipse cx="132" cy="91" rx="7" ry="10" fill="#573746"/><ellipse cx="211" cy="91" rx="7" ry="10" fill="#573746"/><path d="M164 109 Q174 98 184 109 Q175 121 164 109Z" fill="#d95b83"/><path d="M174 119 Q166 133 154 124 M174 119 Q183 133 196 124" fill="none" stroke="#573746" stroke-width="3" stroke-linecap="round"/><path d="M120 111 L91 106 M121 120 L91 125 M224 111 L253 106 M223 120 L253 125" stroke="#9b6b53" stroke-width="2" stroke-linecap="round"/><path d="M259 135 Q289 104 304 70 M272 141 Q310 117 325 94 M254 141 Q263 105 250 78" fill="none" stroke="#69a77a" stroke-width="5" stroke-linecap="round"/><g fill="url(#petal)"><circle cx="304" cy="64" r="13"/><circle cx="291" cy="54" r="11"/><circle cx="316" cy="51" r="11"/><circle cx="326" cy="70" r="11"/><circle cx="299" cy="78" r="10"/></g><circle cx="307" cy="64" r="6" fill="#ffd36e"/><g fill="#e85d87"><path d="M67 43 C48 20 20 45 67 76 C114 45 86 20 67 43Z"/><path d="M290 151 C279 137 261 153 290 174 C319 153 301 137 290 151Z"/></g></svg></div><h2>A Little Gift For You</h2><p>Every little detail is made just for you ♡</p></div>
+<header><div class="eyebrow">MADE WITH LOVE · JUST FOR ROVAN</div><h1 id="headline">ROVAN — Someone Truly Special ❤️</h1><p>There are so many little things I want to tell you...</p></header>
+<div class="hero"><img class="hero-collage" src="images/rovan-collage.png" alt="ROVAN romantic photo collage with four memories, roses and a loving message"><h2>ROVAN ♡</h2><p>A little collection of beautiful moments, made just for you.</p></div>
 <nav><a href="#story">Our Story ♡</a><a href="#memories">Memories 📸</a><a href="#letter">A Letter 💌</a><a href="#surprises">Surprises 🎁</a></nav>
 <section id="story"><h2>Our Story ♡</h2><div class="map travel-map real-map">
   <div class="map-stars" aria-hidden="true">✦　·　　 ✧　　　 ·　✦</div>
@@ -138,17 +138,17 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
 </div><p class="mapnote">Different countries, one little story. Distance means so little when someone means so much ❤️</p></section>
 <section id="time-together"><h2>Our Time Together ⏳</h2><p class="mapnote">Since June 16, 2024</p><div class="counter-grid"><div class="counter-cell"><strong id="years">0</strong><span>Years</span></div><div class="counter-cell"><strong id="months">0</strong><span>Months</span></div><div class="counter-cell"><strong id="days">0</strong><span>Days</span></div><div class="counter-cell"><strong id="hours">0</strong><span>Hours</span></div><div class="counter-cell"><strong id="minutes">0</strong><span>Minutes</span></div><div class="counter-cell"><strong id="seconds">0</strong><span>Seconds</span></div></div><p class="counter-total">That's <b id="totalDays">0</b> days of our story ❤️</p></section>
 <section id="memories"><h2>Little Memories 📸</h2><div class="gallery">
-<div class="photo"><span>Our favorite memories ♡</span></div>
-<div class="photo"><span>Little moments, big feelings ✨</span></div>
-<div class="photo"><span>Across the miles 💗</span></div>
-<div class="photo"><span>More memories to come 🌷</span></div>
+<div class="photo"><img src="images/memory-1.jpg" alt="A favorite photo together"></div>
+<div class="photo"><img src="images/memory-2.jpg" alt="A sweet mirror selfie together"></div>
+<div class="photo"><img src="images/memory-3.jpg" alt="A playful photo booth memory"></div>
+<div class="photo"><img src="images/memory-4.jpg" alt="Another lovely memory together"></div>
 </div></section>
-<section id="letter"><h2>A Letter For You 💌</h2><div class="letter" id="letterText">I may not always find the perfect words, but having you in my life is something I am truly grateful for. You make ordinary days feel special, and even the smallest moments become memories I want to keep.
+<section id="letter"><h2>A Letter For You 💌</h2><div class="letter" id="letterText">You make the ordinary feel magical, and the little moments feel unforgettable. Every laugh, every memory, and every smile is something I will always treasure.
 
-I hope life gives you a thousand reasons to smile, and I hope I can be part of many of them. Thank you for being wonderfully you. ❤️
+May your days be filled with happiness, your heart with peace, and your life with all the beautiful things you deserve. Keep shining, ROVAN. ❤️
 
-With love,
-7ms</div></section>
+With lots of love,
+Always ♡</div></section>
 
 <section id="surprises"><h2>Open Your Surprises 🎁</h2><div class="surprises">
 <button class="surprise" onclick="reveal(this,'The best part of my day is hearing from you ❤️')">A little note 💗</button>
@@ -156,11 +156,11 @@ With love,
 <button class="surprise" onclick="reveal(this,'Even the simplest moments with you become lovely memories ✨')">One more surprise 🎀</button>
 <button class="surprise" onclick="reveal(this,'There are still so many beautiful memories waiting for us 🥹')">The last one 💞</button>
 </div></section>
-<footer>From 7ms to Rovy, with all my love ❤️</footer>
+<footer>Made with love, just for ROVAN ❤️</footer>
 </main>
 <div class="music-dock" id="musicDock" aria-label="Music player">
   <div class="music-disc">♫</div>
-  <div class="music-meta"><div class="music-title">Our Song · 7ms & rovy</div><div class="music-subtitle">A little melody for us ♡</div><div class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="music-meta"><div class="music-title">A Little Melody for ROVAN</div><div class="music-subtitle">A little melody for us ♡</div><div class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
   <div class="audio-controls">
     <button class="audio-play" id="audioPlay" type="button" aria-label="Play song">▶</button>
     <span class="audio-time" id="audioCurrent">0:00</span>
