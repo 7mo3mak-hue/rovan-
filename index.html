@@ -61,6 +61,7 @@ nav a{transition:transform .25s,background .25s}nav a:hover{transform:translateY
 /* Entry screen and elapsed-time counter */
 #gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 50% 25%,#fff 0,#fff0f5 52%,#f8dce8 100%);transition:opacity .65s ease,visibility .65s ease}
 #gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+body:not(.unlocked) main,body:not(.unlocked) #hearts,body:not(.unlocked) .music-dock{visibility:hidden}
 .gate-card{width:min(430px,100%);padding:32px 24px;text-align:center;background:#ffffffeb;border:1px solid #f2bfd0;border-radius:30px;box-shadow:0 22px 70px #a83d6325;animation:gateFloat 4s ease-in-out infinite}
 .gate-heart{font-size:54px;animation:heartbeat 1.8s ease-in-out infinite}.gate-card h1{font-size:27px;margin:8px 0;color:#a83d63}.gate-card p{color:#987181;margin:8px 0 20px}
 #passcode{width:100%;text-align:center;letter-spacing:7px;font-size:22px;border:1px solid #e9b5c6;border-radius:14px;padding:13px;background:#fffafd;outline:none}
@@ -77,7 +78,7 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
 <body>
 <div id="gate" role="dialog" aria-modal="true" aria-label="Enter the date code">
   <div class="gate-card"><div class="gate-heart">💗</div><h1>A Little Surprise</h1><p>Enter our special date to open your gift<br>اكتبي تاريخنا المميز عشان تفتحي الهدية</p>
-    <form id="gateForm"><input id="passcode" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="DDMMYYYY" aria-label="Passcode"><button id="unlock" type="submit">Open our story ♡</button></form><div id="gateError" aria-live="polite"></div>
+    <form id="gateForm"><input id="passcode" type="password" inputmode="numeric" autocomplete="off" maxlength="7" placeholder="Password" aria-label="Passcode"><button id="unlock" type="submit">Open our story ♡</button></form><div id="gateError" aria-live="polite"></div>
   </div>
 </div>
 <div id="hearts"></div>
@@ -97,7 +98,7 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
   <div class="plane" aria-label="plane">✈</div>
   <div class="distance-tag">ONE SKY · TWO HEARTS</div>
 </div><p class="mapnote">Different countries, one little story. المسافة ولا حاجة قدام اللي بينا ❤️</p></section>
-<section id="time-together"><h2>Our Time Together ⏳</h2><p class="mapnote">Since June 16, 2024 · من يوم 16 يونيو 2024</p><div class="counter-grid"><div class="counter-cell"><strong id="years">0</strong><span>Years · سنين</span></div><div class="counter-cell"><strong id="months">0</strong><span>Months · شهور</span></div><div class="counter-cell"><strong id="days">0</strong><span>Days · أيام</span></div></div><p class="counter-total">That's <b id="totalDays">0</b> days of our story ❤️</p></section>
+<section id="time-together"><h2>Our Time Together ⏳</h2><p class="mapnote">Since June 16, 2024 · من يوم 16 يونيو 2024</p><div class="counter-grid"><div class="counter-cell"><strong id="years">0</strong><span>Years · سنين</span></div><div class="counter-cell"><strong id="months">0</strong><span>Months · شهور</span></div><div class="counter-cell"><strong id="days">0</strong><span>Days · أيام</span></div><div class="counter-cell"><strong id="hours">0</strong><span>Hours · ساعات</span></div><div class="counter-cell"><strong id="minutes">0</strong><span>Minutes · دقائق</span></div><div class="counter-cell"><strong id="seconds">0</strong><span>Seconds · ثواني</span></div></div><p class="counter-total">That's <b id="totalDays">0</b> days of our story ❤️</p></section>
 <section id="memories"><h2>Little Memories 📸</h2><div class="gallery">
 <div class="photo"><span>Our favorite memories ♡</span></div>
 <div class="photo"><span>Little moments, big feelings ✨</span></div>
@@ -143,8 +144,15 @@ function calendarDiff(from, to){
 }
 function updateCounter(){
   const now = new Date(); const d = calendarDiff(startDate, now);
-  $('years').textContent=d.years; $('months').textContent=d.months; $('days').textContent=d.days;
-  $('totalDays').textContent=Math.floor((now-startDate)/86400000).toLocaleString('en-US');
+  $('years').textContent=d.years;
+  $('months').textContent=d.months;
+  $('days').textContent=d.days;
+  const elapsed = Math.max(0, now - startDate);
+  const wholeSeconds = Math.floor(elapsed / 1000);
+  $('hours').textContent=Math.floor((wholeSeconds % 86400) / 3600);
+  $('minutes').textContent=Math.floor((wholeSeconds % 3600) / 60);
+  $('seconds').textContent=wholeSeconds % 60;
+  $('totalDays').textContent=Math.floor(elapsed/86400000).toLocaleString('en-US');
 }
 updateCounter(); setInterval(updateCounter, 1000);
 
@@ -163,14 +171,32 @@ player.addEventListener('play',()=>musicDock.classList.add('playing'));
 player.addEventListener('pause',()=>musicDock.classList.remove('playing'));
 $('gateForm').addEventListener('submit', async (event)=>{
   event.preventDefault();
-  if($('passcode').value.trim() !== '16062024'){
-    $('gateError').textContent='Try again ♡'; $('passcode').value=''; $('passcode').focus(); return;
+  if($('passcode').value.trim() !== '2024616'){
+    $('gateError').textContent='Wrong password · حاولي مرة تانية ♡';
+    $('passcode').value=''; $('passcode').focus(); return;
   }
-  $('gateError').textContent=''; $('gate').classList.add('hidden');
-  try { player.currentTime=30; await player.play(); }
-  catch(err){ $('gateError').textContent='اضغط Play لتشغيل الأغنية 🎵'; }
+  $('gateError').textContent='';
+  document.body.classList.add('unlocked');
+  $('gate').classList.add('hidden');
+  try {
+    if (player.readyState < 1) {
+      await new Promise((resolve, reject) => {
+        player.addEventListener('loadedmetadata', resolve, {once:true});
+        player.addEventListener('error', reject, {once:true});
+        player.load();
+      });
+    }
+    player.currentTime=30;
+    await player.play();
+  } catch(err) {
+    const subtitle=document.querySelector('.music-subtitle');
+    if (subtitle) subtitle.textContent='اضغط Play لتشغيل الأغنية 🎵';
+  }
 });
-player.addEventListener('loadedmetadata',()=>{ if(player.currentTime < 30) player.currentTime=30; });
+player.addEventListener('error',()=>{
+  const subtitle=document.querySelector('.music-subtitle');
+  if (subtitle) subtitle.textContent='ملف الأغنية غير موجود بجانب index.html';
+});
 player.addEventListener('ended',()=>{ player.currentTime=30; player.play().catch(()=>{}); });
 </script>
 </body></html>
