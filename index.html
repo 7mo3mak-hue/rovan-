@@ -73,6 +73,32 @@ body:not(.unlocked) main,body:not(.unlocked) #hearts,body:not(.unlocked) .music-
 .photo{position:relative;transition:transform .35s,box-shadow .35s}.photo:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 14px 25px #c45d7a18}
 section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14px 34px #c45d7a18}
 
+
+/* Final mobile polish: true viewport centering, a richer hero and a geographic travel illustration. */
+#gate{display:flex!important;align-items:center!important;justify-content:center!important;min-height:100svh;height:100dvh;padding:18px 14px;padding-bottom:calc(18px + env(safe-area-inset-bottom));}
+.gate-card{position:relative;margin:auto!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;width:min(500px,100%);max-height:calc(100dvh - 36px);display:flex;flex-direction:column;justify-content:center;}
+#gateForm{width:100%;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:stretch}
+#passcode,#unlock{display:block;width:100%;margin-left:auto;margin-right:auto;text-align:center}
+#gateError{text-align:center;width:100%}
+.hero{padding:20px 18px 22px;overflow:hidden;background:linear-gradient(145deg,#fff 15%,#fff5f9 100%)}
+.hero-art{height:clamp(145px,35vw,205px);max-width:440px;margin:0 auto 5px;display:grid;place-items:center}
+.hero-art svg{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 8px 12px #b9436912)}
+.real-map{height:clamp(270px,58vw,340px);padding:8px 8px 44px;background:radial-gradient(ellipse at 25% 45%,#fff 0,transparent 42%),linear-gradient(135deg,#fff8fb,#f5efff);border:1px solid #f0d5e1}
+.geo-map{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.map-waterline{fill:none;stroke:#ead9e9;stroke-width:1.5;stroke-dasharray:3 8;opacity:.8}
+.country-shape{fill:url(#landGrad);stroke:#c77a9d;stroke-width:2.5;stroke-linejoin:round}
+.sinai-shape{fill:#f3c4d9;stroke:#c77a9d;stroke-width:2}
+.kuwait-shape{fill:#e9cafa;stroke:#9d79c5;stroke-width:2.5}
+.route-halo{fill:none;stroke:#e7a0bb;stroke-width:12;stroke-linecap:round;opacity:.23}
+.route-line{fill:none;stroke:url(#routeGrad);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:8 9;animation:dashMove 1.4s linear infinite}
+.map-marker{fill:#fff;stroke:#df5d8c;stroke-width:4;filter:drop-shadow(0 2px 4px #a83d6340)}
+.map-country-label{font:700 14px 'DM Sans',sans-serif;letter-spacing:2px;fill:#984665;text-anchor:middle}
+.map-sea-label{font:500 9px 'DM Sans',sans-serif;letter-spacing:1.6px;fill:#aa8ca5;text-anchor:middle;opacity:.9}
+.moving-plane{fill:#a64d82;filter:drop-shadow(0 2px 3px #a83d6340)}
+.map-caption{position:absolute;left:10px;right:10px;bottom:9px;display:flex;align-items:center;justify-content:center;gap:12px;color:#96647c;font-size:clamp(10px,2.6vw,12px);font-weight:600}
+.caption-heart{color:#df6793;font-size:17px}
+@media(max-width:480px){.gate-card{padding:26px 20px}.gate-heart{font-size:48px}.gate-card h1{font-size:25px}.gate-card p{font-size:14px}.hero{padding:16px 12px 20px}.hero-art{height:155px}.real-map{height:265px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
@@ -84,19 +110,31 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
 <div id="hearts"></div>
 <main>
 <header><div class="eyebrow">MADE WITH LOVE · JUST FOR ROVY</div><h1 id="headline">For Rovy, someone truly special ❤️</h1><p>There are so many little things I want to tell you...</p></header>
-<div class="hero"><div class="illustration">🐱💐</div><h2>A Little Gift For You</h2><p>Every little detail is made just for you ♡</p></div>
+<div class="hero"><div class="illustration hero-art" aria-label="A cute cat holding a bouquet of flowers" role="img">
+<svg viewBox="0 0 360 190" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="fur" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe5a3"/><stop offset="1" stop-color="#ffbd59"/></linearGradient><linearGradient id="petal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9fbe"/><stop offset="1" stop-color="#e85d87"/></linearGradient></defs><ellipse cx="176" cy="165" rx="115" ry="13" fill="#f8dce7"/><path d="M75 78 Q64 17 113 36 L140 55 Q177 39 211 56 L239 34 Q278 19 270 80 Q285 125 247 147 Q213 168 169 160 Q116 166 86 137 Q64 112 75 78Z" fill="url(#fur)"/><path d="M89 64 Q82 34 111 48 L132 66 M229 65 L253 46 Q270 39 260 69" fill="#f49a56"/><ellipse cx="132" cy="91" rx="7" ry="10" fill="#573746"/><ellipse cx="211" cy="91" rx="7" ry="10" fill="#573746"/><path d="M164 109 Q174 98 184 109 Q175 121 164 109Z" fill="#d95b83"/><path d="M174 119 Q166 133 154 124 M174 119 Q183 133 196 124" fill="none" stroke="#573746" stroke-width="3" stroke-linecap="round"/><path d="M120 111 L91 106 M121 120 L91 125 M224 111 L253 106 M223 120 L253 125" stroke="#9b6b53" stroke-width="2" stroke-linecap="round"/><path d="M259 135 Q289 104 304 70 M272 141 Q310 117 325 94 M254 141 Q263 105 250 78" fill="none" stroke="#69a77a" stroke-width="5" stroke-linecap="round"/><g fill="url(#petal)"><circle cx="304" cy="64" r="13"/><circle cx="291" cy="54" r="11"/><circle cx="316" cy="51" r="11"/><circle cx="326" cy="70" r="11"/><circle cx="299" cy="78" r="10"/></g><circle cx="307" cy="64" r="6" fill="#ffd36e"/><g fill="#e85d87"><path d="M67 43 C48 20 20 45 67 76 C114 45 86 20 67 43Z"/><path d="M290 151 C279 137 261 153 290 174 C319 153 301 137 290 151Z"/></g></svg></div><h2>A Little Gift For You</h2><p>Every little detail is made just for you ♡</p></div>
 <nav><a href="#story">Our Story ♡</a><a href="#memories">Memories 📸</a><a href="#letter">A Letter 💌</a><a href="#surprises">Surprises 🎁</a></nav>
-<section id="story"><h2>Our Story ♡</h2><div class="map travel-map">
-  <div class="map-stars">✦　·　　 ✧　　　 ·　✦</div>
-  <svg class="flight-path" viewBox="0 0 700 250" preserveAspectRatio="none" aria-hidden="true">
-    <defs><linearGradient id="pathGrad"><stop offset="0" stop-color="#e85d87"/><stop offset="1" stop-color="#a66be0"/></linearGradient></defs>
-    <path class="path-glow" d="M105 185 C245 15 440 15 590 80"/>
-    <path class="path-dash" d="M105 185 C245 15 440 15 590 80"/>
+<section id="story"><h2>Our Story ♡</h2><div class="map travel-map real-map">
+  <div class="map-stars" aria-hidden="true">✦　·　　 ✧　　　 ·　✦</div>
+  <svg class="geo-map" viewBox="0 0 700 300" role="img" aria-label="Stylized geographic map showing Egypt and Kuwait connected by a travel route">
+    <defs>
+      <linearGradient id="landGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8c8d9"/><stop offset="1" stop-color="#e9cafa"/></linearGradient>
+      <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e85d87"/><stop offset="1" stop-color="#9870d5"/></linearGradient>
+      <filter id="mapShadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#a85d7c" flood-opacity=".16"/></filter>
+    </defs>
+    <path class="map-waterline" d="M15 58 Q145 22 260 52 T485 50 T690 66 M8 245 Q150 214 285 244 T690 232"/>
+    <!-- Simplified but geographically recognizable country outlines -->
+    <path class="country-shape egypt-shape" d="M112 62 L270 62 L302 75 L331 91 L319 112 L298 124 L281 149 L264 190 L249 229 L230 250 L108 250 L108 62 Z" filter="url(#mapShadow)"/>
+    <path class="country-shape sinai-shape" d="M270 62 L332 91 L319 112 L298 124 L281 149 L264 190 L249 157 L263 125 L278 103 Z"/>
+    <path class="country-shape kuwait-shape" d="M500 82 L526 75 L548 84 L552 103 L541 117 L520 114 L505 101 Z" filter="url(#mapShadow)"/>
+    <path class="route-halo" d="M205 165 C300 25 420 25 525 96"/>
+    <path class="route-line" d="M205 165 C300 25 420 25 525 96"/>
+    <circle class="map-marker" cx="205" cy="165" r="7"/><circle class="map-marker" cx="525" cy="96" r="7"/>
+    <text class="map-country-label" x="176" y="202">EGYPT</text>
+    <text class="map-country-label" x="526" y="143">KUWAIT</text>
+    <text class="map-sea-label" x="392" y="204">RED SEA · ARABIAN GULF</text>
+    <text class="moving-plane" font-size="25">✈<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="M205 165 C300 25 420 25 525 96"/></text>
   </svg>
-  <div class="city city-eg"><span class="city-dot"></span><span class="flag">🇪🇬</span><b id="place1">EGYPT</b><small>7ms · My side</small></div>
-  <div class="city city-kw"><span class="city-dot"></span><span class="flag">🇰🇼</span><b id="place2">KUWAIT</b><small>Rovy · Your side</small></div>
-  <div class="plane" aria-label="plane">✈</div>
-  <div class="distance-tag">ONE SKY · TWO HEARTS</div>
+  <div class="map-caption"><span>🇪🇬 Egypt · My side</span><span class="caption-heart">♡</span><span>🇰🇼 Kuwait · Your side</span></div>
 </div><p class="mapnote">Different countries, one little story. Distance means so little when someone means so much ❤️</p></section>
 <section id="time-together"><h2>Our Time Together ⏳</h2><p class="mapnote">Since June 16, 2024</p><div class="counter-grid"><div class="counter-cell"><strong id="years">0</strong><span>Years</span></div><div class="counter-cell"><strong id="months">0</strong><span>Months</span></div><div class="counter-cell"><strong id="days">0</strong><span>Days</span></div><div class="counter-cell"><strong id="hours">0</strong><span>Hours</span></div><div class="counter-cell"><strong id="minutes">0</strong><span>Minutes</span></div><div class="counter-cell"><strong id="seconds">0</strong><span>Seconds</span></div></div><p class="counter-total">That's <b id="totalDays">0</b> days of our story ❤️</p></section>
 <section id="memories"><h2>Little Memories 📸</h2><div class="gallery">
