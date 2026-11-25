@@ -100,6 +100,18 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
 .caption-heart{color:#df6793;font-size:17px}
 @media(max-width:480px){.gate-card{padding:26px 20px}.gate-heart{font-size:48px}.gate-card h1{font-size:25px}.gate-card p{font-size:14px}.hero{padding:16px 12px 20px}.hero-art{height:155px}.real-map{height:265px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* ROVAN celebrations & next-event counters */
+.celebration-intro{text-align:center;color:#9c7182;font-size:13px;margin:-8px 0 18px}
+.celebration-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.celebration-card{border:1px solid #f1cada;border-radius:18px;padding:17px 12px;text-align:center;background:linear-gradient(145deg,#fff9fb,#fff0f5);box-shadow:0 7px 20px #c45d7a10}
+.celebration-card .emoji{font-size:25px}.celebration-card strong{display:block;color:#b94369;font-size:30px;line-height:1.3;font-variant-numeric:tabular-nums}.celebration-card span{font-size:12px;color:#956e7e}
+.next-event{margin-top:16px;padding:20px 14px;border-radius:20px;background:linear-gradient(135deg,#fff0f5,#fce3ec);text-align:center;border:1px solid #f2c7d6}
+.next-event .next-label{font-size:12px;letter-spacing:1.5px;color:#a66b83;text-transform:uppercase}.next-event h3{margin:7px 0;color:#a83d63;font-family:'Playfair Display',serif;font-size:23px}
+.countdown-digits{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px auto 8px;max-width:390px}.countdown-unit{background:#ffffffd9;border:1px solid #f1cbd8;border-radius:12px;padding:10px 3px}.countdown-unit b{display:block;color:#b94369;font-size:clamp(20px,5vw,27px);font-variant-numeric:tabular-nums}.countdown-unit small{font-size:10px;color:#9c7182}
+.upcoming-list{display:grid;gap:8px;margin-top:12px}.upcoming-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border:1px solid #f3d5df;border-radius:13px;background:#fffafb;font-size:13px}.upcoming-row b{color:#b94369;text-align:right}.date-note{text-align:center;font-size:11px;color:#a77b8a;margin:12px 0 0}
+@media(max-width:420px){.celebration-grid{gap:8px}.celebration-card{padding:14px 8px}.upcoming-row{font-size:12px}}
+
 </style>
 </head>
 <body>
@@ -137,6 +149,35 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
   <div class="map-caption"><span>🇪🇬 Egypt · My side</span><span class="caption-heart">♡</span><span>🇰🇼 Kuwait · Your side</span></div>
 </div><p class="mapnote">Different countries, one little story. Distance means so little when someone means so much ❤️</p></section>
 <section id="time-together"><h2>Our Time Together ⏳</h2><p class="mapnote">Since June 16, 2024</p><div class="counter-grid"><div class="counter-cell"><strong id="years">0</strong><span>Years</span></div><div class="counter-cell"><strong id="months">0</strong><span>Months</span></div><div class="counter-cell"><strong id="days">0</strong><span>Days</span></div><div class="counter-cell"><strong id="hours">0</strong><span>Hours</span></div><div class="counter-cell"><strong id="minutes">0</strong><span>Minutes</span></div><div class="counter-cell"><strong id="seconds">0</strong><span>Seconds</span></div></div><p class="counter-total">That's <b id="totalDays">0</b> days of our story ❤️</p></section>
+
+<section id="celebrations"><h2>Our Celebrations &amp; Memories 🎀</h2>
+<p class="celebration-intro">Every special day becomes another lovely memory together ♡</p>
+<div class="celebration-grid">
+  <div class="celebration-card"><div class="emoji">🌙</div><strong id="ramadanCount">2</strong><span>Ramadans together</span></div>
+  <div class="celebration-card"><div class="emoji">🌸</div><strong id="fitrCount">2</strong><span>Eid Al-Fitr celebrations</span></div>
+  <div class="celebration-card"><div class="emoji">🐑</div><strong id="adhaCount">3</strong><span>Eid Al-Adha celebrations</span></div>
+  <div class="celebration-card"><div class="emoji">🎂</div><strong id="birthdayCount">5</strong><span>Birthdays since our story began</span></div>
+</div>
+<div class="next-event" aria-live="polite">
+  <div class="next-label">Counting down to</div><h3 id="nextEventName">Our next special day ♡</h3>
+  <div class="countdown-digits">
+    <div class="countdown-unit"><b id="eventDays">--</b><small>Days</small></div>
+    <div class="countdown-unit"><b id="eventHours">--</b><small>Hours</small></div>
+    <div class="countdown-unit"><b id="eventMinutes">--</b><small>Minutes</small></div>
+    <div class="countdown-unit"><b id="eventSeconds">--</b><small>Seconds</small></div>
+  </div>
+  <div id="nextEventDate" class="date-note"></div>
+</div>
+<div class="upcoming-list" id="upcomingEvents">
+  <div class="upcoming-row"><span>🌙 Ramadan</span><b>Expected February 2027</b></div>
+  <div class="upcoming-row"><span>🌸 Eid Al-Fitr</span><b>Expected March 2027</b></div>
+  <div class="upcoming-row"><span>🐑 Eid Al-Adha</span><b>Expected May 2027</b></div>
+  <div class="upcoming-row"><span>🎂 Your birthday · May 13</span><b>May 13, 2027</b></div>
+  <div class="upcoming-row"><span>🎂 ROVAN's birthday · June 18</span><b>June 18, 2027</b></div>
+</div>
+<p class="date-note">Islamic holiday dates are estimates and may shift by a day depending on the moon sighting.</p>
+</section>
+
 <section id="memories"><h2>Little Memories 📸</h2><div class="gallery">
 <div class="photo"><img src="images/memory-1.jpg" alt="A favorite photo together"></div>
 <div class="photo"><img src="images/memory-2.jpg" alt="A sweet mirror selfie together"></div>
@@ -199,6 +240,45 @@ function updateCounter(){
   $('totalDays').textContent=Math.floor(elapsed/86400000).toLocaleString('en-US');
 }
 updateCounter(); setInterval(updateCounter, 1000);
+
+
+// Count celebrations since the relationship began (June 16, 2024).
+// Islamic holiday dates are based on Egypt's observed/expected calendar and can vary by moon sighting.
+const celebrationHistory = {
+  ramadan: ['2025-03-01','2026-02-18'],
+  fitr: ['2025-03-30','2026-03-20'],
+  adha: ['2024-06-16','2025-06-06','2026-05-27']
+};
+$('ramadanCount').textContent = celebrationHistory.ramadan.length;
+$('fitrCount').textContent = celebrationHistory.fitr.length;
+$('adhaCount').textContent = celebrationHistory.adha.length;
+function birthdayDates(month, day, fromYear, toYear){
+  const out=[]; for(let y=fromYear;y<=toYear;y++){const d=new Date(y,month-1,day); if(d>=startDate && d<=new Date()) out.push(d);} return out;
+}
+function updateCelebrations(){
+  const now=new Date();
+  const birthdays=[...birthdayDates(5,13,2024,now.getFullYear()),...birthdayDates(6,18,2024,now.getFullYear())];
+  $('birthdayCount').textContent=birthdays.length;
+  const y=now.getFullYear();
+  const events=[
+    {name:'Ramadan 🌙',date:new Date(2027,1,8,0,0,0),note:'Expected February 8, 2027'},
+    {name:'Eid Al-Fitr 🌸',date:new Date(2027,2,10,0,0,0),note:'Expected March 10, 2027'},
+    {name:'Eid Al-Adha 🐑',date:new Date(2027,4,17,0,0,0),note:'Expected May 17, 2027'},
+    {name:'Your Birthday 🎂',date:new Date(y,4,13,0,0,0),note:''},
+    {name:"ROVAN's Birthday 🎂",date:new Date(y,5,18,0,0,0),note:''}
+  ];
+  for(const e of events){if(e.date<=now && e.name.includes('Birthday')) e.date.setFullYear(e.date.getFullYear()+1);}
+  const next=events.filter(e=>e.date>now).sort((a,b)=>a.date-b.date)[0];
+  if(!next)return;
+  $('nextEventName').textContent=next.name;
+  $('nextEventDate').textContent=next.note || next.date.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const seconds=Math.max(0,Math.floor((next.date-now)/1000));
+  $('eventDays').textContent=Math.floor(seconds/86400);
+  $('eventHours').textContent=String(Math.floor(seconds%86400/3600)).padStart(2,'0');
+  $('eventMinutes').textContent=String(Math.floor(seconds%3600/60)).padStart(2,'0');
+  $('eventSeconds').textContent=String(seconds%60).padStart(2,'0');
+}
+updateCelebrations();setInterval(updateCelebrations,1000);
 
 // Floating hearts
 for(let i=0;i<22;i++){
