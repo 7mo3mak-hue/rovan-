@@ -121,10 +121,6 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
 </style>
 </head>
 <body>
-<div id="installBar" style="display:none;position:sticky;top:8px;z-index:50;text-align:center;padding:8px 12px">
-  <button id="installAppBtn" type="button" style="border:0;border-radius:24px;padding:11px 20px;background:#b94369;color:white;font-weight:700;box-shadow:0 5px 18px #b9436940;cursor:pointer">Install ROVAN app ✨</button>
-</div>
-
 <div id="gate" role="dialog" aria-modal="true" aria-label="Enter the date code">
   <div class="gate-card"><div class="gate-heart">💗</div><h1>A Little Surprise</h1><p>Enter our special date to open your gift</p>
     <form id="gateForm"><input id="passcode" type="password" inputmode="numeric" autocomplete="off" maxlength="7" placeholder="Password" aria-label="Passcode"><button id="unlock" type="submit">Open our story ♡</button></form><div id="gateError" aria-live="polite"></div>
@@ -342,30 +338,4 @@ player.addEventListener('error',()=>{
 player.addEventListener('ended',()=>{ player.currentTime=0; player.play().catch(()=>{}); });
 </script>
 
-<script>
-// Make ROVAN installable and keep its main files available offline.
-if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(console.error));
-}
-let rovanInstallPrompt = null;
-const rovanInstallBar = document.getElementById('installBar');
-const rovanInstallButton = document.getElementById('installAppBtn');
-const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-if (!isStandalone && rovanInstallBar) rovanInstallBar.style.display = 'block';
-window.addEventListener('beforeinstallprompt', (event) => {
-  event.preventDefault(); rovanInstallPrompt = event;
-  if (rovanInstallBar) rovanInstallBar.style.display = 'block';
-});
-rovanInstallButton?.addEventListener('click', async () => {
-  if (rovanInstallPrompt) {
-    rovanInstallPrompt.prompt();
-    await rovanInstallPrompt.userChoice;
-    rovanInstallPrompt = null;
-    rovanInstallBar.style.display = 'none';
-  } else {
-    alert('To install ROVAN: open your browser menu (⋮), then choose “Add to Home screen” or “Install app”.');
-  }
-});
-window.addEventListener('appinstalled', () => { if (rovanInstallBar) rovanInstallBar.style.display = 'none'; });
-</script>
 </body></html>
