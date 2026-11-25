@@ -343,9 +343,10 @@ player.addEventListener('ended',()=>{ player.currentTime=0; player.play().catch(
 let installPromptEvent=null;
 const installBtn=$('installApp');
 window.addEventListener('beforeinstallprompt', event=>{event.preventDefault();installPromptEvent=event;installBtn.style.display='inline-flex';});
+installBtn.style.display='inline-flex';
 installBtn.addEventListener('click',async()=>{
-  if(installPromptEvent){installPromptEvent.prompt();await installPromptEvent.userChoice;installPromptEvent=null;}
-  else { $('gateError').textContent='Use Chrome menu ⋮ then Install app / Add to Home screen'; }
+  if(installPromptEvent){installPromptEvent.prompt();const choice=await installPromptEvent.userChoice;installPromptEvent=null;if(choice && choice.outcome==='accepted') $('gateError').textContent='';}
+  else { $('gateError').textContent='Install is not available yet. Open this site in Chrome and use ⋮ then Install app if Chrome offers it.'; }
 });
 window.addEventListener('appinstalled',()=>{installBtn.style.display='none';});
 </script>
