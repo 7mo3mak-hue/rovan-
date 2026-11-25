@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rovan-pwa-v4';
+const CACHE_NAME = '82-and-77-pwa-v5';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './our-song.m4a', './images/rovan-collage.png', './images/memory-1.jpg', './images/memory-2.jpg', './images/memory-3.jpg', './images/memory-4.jpg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));

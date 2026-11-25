@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#fff0f5">
-<meta name="description" content="ROVAN — a little collection of memories and celebrations">
+<meta name="description" content="82 and 77 — a little collection of memories and celebrations">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>A Little Gift From My Heart ❤️</title>
+<title>82 and 77 ❤️</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
 :root{--pink:#e85d87;--rose:#b94369;--pale:#fff0f5;--ink:#573746}
@@ -118,11 +118,14 @@ section{transition:transform .35s,box-shadow .35s}section:hover{box-shadow:0 14p
 .upcoming-list{display:grid;gap:8px;margin-top:12px}.upcoming-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border:1px solid #f3d5df;border-radius:13px;background:#fffafb;font-size:13px}.upcoming-row b{color:#b94369;text-align:right}.date-note{text-align:center;font-size:11px;color:#a77b8a;margin:12px 0 0}
 @media(max-width:420px){.celebration-grid{gap:8px}.celebration-card{padding:14px 8px}.upcoming-row{font-size:12px}}
 
+#installApp{position:absolute;top:12px;right:12px;border:1px solid #f1c6d5;border-radius:22px;background:#fff5f9;color:#a83d63;padding:6px 10px;font-size:12px;cursor:pointer;box-shadow:0 3px 10px #b9436915}
+#installApp span{font-size:11px;font-weight:600}
+#installApp:active{transform:scale(.96)}
 </style>
 </head>
 <body>
 <div id="gate" role="dialog" aria-modal="true" aria-label="Enter the date code">
-  <div class="gate-card"><div class="gate-heart">💗</div><h1>A Little Surprise</h1><p>Enter our special date to open your gift</p>
+  <div class="gate-card"><button id="installApp" type="button" aria-label="Install 82 and 77" title="Install 82 and 77">⬇️ <span>Install</span></button><div class="gate-heart">💗</div><h1>A Little Surprise</h1><p>Enter our special date to open your gift</p>
     <form id="gateForm"><input id="passcode" type="password" inputmode="numeric" autocomplete="off" maxlength="7" placeholder="Password" aria-label="Passcode"><button id="unlock" type="submit">Open our story ♡</button></form><div id="gateError" aria-live="polite"></div>
   </div>
 </div>
@@ -336,6 +339,15 @@ player.addEventListener('error',()=>{
   if (subtitle) subtitle.textContent='The song file could not be found next to index.html';
 });
 player.addEventListener('ended',()=>{ player.currentTime=0; player.play().catch(()=>{}); });
+// PWA install button: invoke the browser's native install prompt when available.
+let installPromptEvent=null;
+const installBtn=$('installApp');
+window.addEventListener('beforeinstallprompt', event=>{event.preventDefault();installPromptEvent=event;installBtn.style.display='inline-flex';});
+installBtn.addEventListener('click',async()=>{
+  if(installPromptEvent){installPromptEvent.prompt();await installPromptEvent.userChoice;installPromptEvent=null;}
+  else { $('gateError').textContent='Use Chrome menu ⋮ then Install app / Add to Home screen'; }
+});
+window.addEventListener('appinstalled',()=>{installBtn.style.display='none';});
 </script>
 
 </body></html>
